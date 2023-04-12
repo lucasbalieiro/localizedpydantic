@@ -15,7 +15,7 @@ Install with pip:
 Here's an example of how to use LocalizedPydantic to validate a Brazilian CEP:
 
 ```python
-from localizedpydantic.validators.brazil import CPF
+from localizedpydantic.models.brazil import CPF
 from pydantic import ValidationError
 
 try:

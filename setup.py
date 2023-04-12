@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="localizedpydantic",
-    version="0.1.0",
+    version="0.1.1",
     author="Lucas Balieiro Matos",
     author_email="lucasbalieirom@hotmail.com",
     description="Library to validate localized data with pydantic",

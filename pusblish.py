@@ -26,7 +26,6 @@ else:
 
 version = new_version
 print(f'New version: {version}')
-exit()
 os.system(f"sed -i 's/version=\".*\"/version=\"{version}\"/' setup.py")
 
 os.system("rm -rf dist")

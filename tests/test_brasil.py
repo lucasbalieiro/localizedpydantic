@@ -1,5 +1,5 @@
 from pytest import mark, raises
-from localizedpydantic.models.brazil import CPF, CNPJ
+from localizedpydantic.models.brazil import CPF, CNPJ, CEP
 
 
 
@@ -50,3 +50,28 @@ def test_cnpj(cnpj, expected):
     else:
         with raises(ValueError):
             CNPJ(cnpj=cnpj)
+
+
+#test for cep
+
+test_cases = [
+    ("12345678", "12345-678"),
+    ("12345-678", "12345-678"),
+    ("12.345-678", "12345-678"),
+    ("123456789", None),
+    ("1234-5678", "12345-678"),
+    ("1234567a", None),
+    ("123456", None),
+    ("12.345.678 ", "12345-678"),
+    ("12345 678", "12345-678"),
+    (" 12345-678 ", "12345-678"),
+]
+
+@mark.parametrize("cep, expected", test_cases)
+def test_cep(cep, expected):
+    if expected:
+        cep_obj = CEP(cep=cep)
+        assert cep_obj.cep == expected
+    else:
+        with raises(ValueError):
+            CEP(cep=cep)

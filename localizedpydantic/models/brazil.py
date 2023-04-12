@@ -1,6 +1,6 @@
 import re
 from pydantic import BaseModel, validator
-from localizedpydantic.validators.brazil import validate_cpf, validate_cnpj
+from localizedpydantic.validators.brazil import validate_cpf, validate_cnpj, validate_cep
 class CPF(BaseModel):
     cpf: str
 
@@ -20,3 +20,13 @@ class CNPJ(BaseModel):
         if not validate_cnpj(v):
             raise ValueError('Invalid CNPJ')
         return f'{v[:2]}.{v[2:5]}.{v[5:8]}/{v[8:12]}-{v[12:]}'
+    
+class CEP(BaseModel):
+    cep: str
+
+    @validator('cep')
+    def validate_cep(cls, v):
+        v = re.sub('[^0-9]', '', v)
+        if not validate_cep(v):
+            raise ValueError('Invalid CEP')
+        return f'{v[:5]}-{v[5:]}'

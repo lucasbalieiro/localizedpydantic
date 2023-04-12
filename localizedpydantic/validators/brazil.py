@@ -51,3 +51,14 @@ def validate_cnpj(cnpj: str) -> bool:
     digit2 = str(11 - remainder2) if remainder2 > 1 else '0'
 
     return cnpj_digit == digit1 + digit2
+
+def validate_cep(cep: str) -> bool:
+    if not isinstance(cep, str):
+        return False
+
+    cep = re.sub(r'\D', '', cep)
+
+    if len(cep) != 8:
+        return False
+
+    return True

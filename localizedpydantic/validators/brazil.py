@@ -9,18 +9,18 @@ def validate_cpf(cpf: str) -> bool:
     if len(set(cpf)) == 1:
         return False
 
-    soma = sum([int(cpf[i]) * (10 - i) for i in range(9)])
-    resto = 11 - (soma % 11)
-    if resto == 10 or resto == 11:
-        resto = 0
-    if resto != int(cpf[9]):
+    sum1 = sum([int(cpf[i]) * (10 - i) for i in range(9)])
+    remainder1 = 11 - (sum1 % 11)
+    if remainder1 == 10 or remainder1 == 11:
+        remainder1 = 0
+    if remainder1 != int(cpf[9]):
         return False
 
-    soma = sum([int(cpf[i]) * (11 - i) for i in range(10)])
-    resto = 11 - (soma % 11)
-    if resto == 10 or resto == 11:
-        resto = 0
-    if resto != int(cpf[10]):
+    sum2 = sum([int(cpf[i]) * (11 - i) for i in range(10)])
+    remainder2 = 11 - (sum2 % 11)
+    if remainder2 == 10 or remainder2 == 11:
+        remainder2 = 0
+    if remainder2 != int(cpf[10]):
         return False
 
     return True

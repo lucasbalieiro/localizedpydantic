@@ -15,14 +15,21 @@ Install with pip:
 Here's an example of how to use LocalizedPydantic to validate a Brazilian CEP:
 
 ```python
-from localizedpydantic import ptbr
+from localizedpydantic.validators.brazil import CPF
+from pydantic import ValidationError
 
-class Address(ptbr.Address):
-    cep: str
+try:
+    cpf = CPF(cpf='123.456.789-00')
+    print(cpf.cpf)  # '123.456.789-00'
+except ValidationError as e:
+    print(e)
 
-address_data = {"cep": "01001-000"}
+try:
+    cpf = CPF(cpf='12345678900')
+    print(cpf.cpf)  # raises ValidationError
+except ValidationError as e:
+    print(e)
 
-address = Address(**address_data)
 ```
 
 ## Contributing
